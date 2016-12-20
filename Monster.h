@@ -12,13 +12,9 @@ public:
     Monster();
     ~Monster();
     
-    void setMonsterName(string name){
-        monsterName = name;
-    }
+	void setMonsterName(string name);
     
-    string getMonsterName(){
-        return monsterName;
-    }
+	string getMonsterName();
 
 };
 

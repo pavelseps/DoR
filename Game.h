@@ -13,12 +13,7 @@ public:
     Game();
     ~Game();
     
-    int readInput(){
-        int n = -1;
-        n = _getch();
-        n -= 48;
-        return n;
-    }
+	int readInput();
 };
 
 #endif // GAME_H

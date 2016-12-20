@@ -1,25 +1,19 @@
 #include <iostream>
-
 using namespace std;
-
 #ifndef ITEM_H
 #define ITEM_H
 
 class Item
 {
 private:
-    string itemName = "";
+    string itemName;
 public:
     Item();
     ~Item();
 
-    void setName(string name){
-        itemName = name;
-    }
+	void setName(string name);
     
-    string getName(){
-        return itemName;
-    }
+	string getName();
 };
 
 #endif // ITEM_H
