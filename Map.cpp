@@ -2,18 +2,6 @@
 
 Map::Map()
 {
-}
-
-Map::~Map()
-{
-}
-
-void Map::changeActualPlaPos(int x, int y) {
-	plaActualPos[0] = x;
-	plaActualPos[1] = y;
-}
-
-void Map::initMap() {
 	for (int x = 0; x<sizeX; x++) {
 		for (int y = 0; y<sizeY; y++) {
 			map[x][y] = NULL;
@@ -38,7 +26,7 @@ void Map::initMap() {
 	map[2][1] = new RoomFight();
 	map[2][2] = new Room();
 
-	changeActualPlaPos(0, 0);
+	setActualPlaPos(0, 0);
 
 	map[0][0]->setLabel("STA");
 	map[0][0]->setDescription("Jsi na startu");
@@ -58,9 +46,38 @@ void Map::initMap() {
 	map[2][2]->setDescription("Konec hry");
 	map[2][2]->setStatusDoor("left", true);
 	map[2][2]->setLabel("END");
+}
 
-	printMap();
-	moveWithPla(map[plaActualPos[0]][plaActualPos[1]]->waitForAction());
+Map::~Map()
+{
+}
+
+void Map::setActualPlaPos(int x, int y) {
+	plaActualPos[0] = x;
+	plaActualPos[1] = y;
+}
+
+void Map::moveActualPlaPos(string dir) {
+	if (dir == "top") {
+		setActualPlaPos(plaActualPos[0] - 1, plaActualPos[1]);
+	}
+	else if (dir == "right") {
+		setActualPlaPos(plaActualPos[0], plaActualPos[1] + 1);
+	}
+	else if (dir == "bottom") {
+		setActualPlaPos(plaActualPos[0] + 1, plaActualPos[1]);
+	}
+	else if (dir == "left") {
+		setActualPlaPos(plaActualPos[0], plaActualPos[1] - 1);
+	}
+}
+
+Room* Map::getActualRoom() {
+	return getRoom(plaActualPos[0], plaActualPos[1]);
+}
+
+Room* Map::getRoom(int x, int y) {
+	return map[x][y];
 }
 
 void Map::printMap() {
@@ -145,34 +162,5 @@ void Map::printMap() {
 		s3 = "";
 		s4 = "";
 		s5 = "";
-	}
-}
-
-void Map::moveWithPla(string dir) {
-	if (map[plaActualPos[0]][plaActualPos[1]]->getStatusDoor(dir)) {
-		if (dir == "top") {
-			changeActualPlaPos(plaActualPos[0] - 1, plaActualPos[1]);
-		}
-		else if (dir == "right") {
-			changeActualPlaPos(plaActualPos[0], plaActualPos[1] + 1);
-		}
-		else if (dir == "bottom") {
-			changeActualPlaPos(plaActualPos[0] + 1, plaActualPos[1]);
-		}
-		else if (dir == "left") {
-			changeActualPlaPos(plaActualPos[0], plaActualPos[1] - 1);
-		}
-		system("cls");
-		printMap();
-		moveWithPla(map[plaActualPos[0]][plaActualPos[1]]->waitForAction());
-	}
-	else if (dir != "top" && dir != "right" && dir != "bottom" && dir != "left") {
-		system("cls");
-		printMap();
-		cout << dir;
-		moveWithPla(map[plaActualPos[0]][plaActualPos[1]]->waitForAction());
-	}
-	else {
-		moveWithPla(map[plaActualPos[0]][plaActualPos[1]]->waitForAction(false));
 	}
 }

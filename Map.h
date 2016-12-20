@@ -19,18 +19,17 @@ private:
 
     Room* map [sizeX][sizeY];
     
-	void changeActualPlaPos(int x, int y);
+	void setActualPlaPos(int x, int y);
     
     
 public:
     Map();
     ~Map();
-    
-	void initMap();
-
+   
 	void printMap();
-    
-	void moveWithPla(string dir);
+	Room* getActualRoom();
+	Room* getRoom(int x, int y);
+	void moveActualPlaPos(string dir);
 };
 
 #endif // MAP_H

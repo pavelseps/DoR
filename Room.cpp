@@ -2,6 +2,8 @@
 
 Room::Room()
 {
+
+	legend = "\n\t0: Prectes info\n";
 }
 
 Room::~Room()
@@ -14,6 +16,10 @@ void Room::setDescription(string description) {
 
 string Room::getDescription() {
 	return this->description;
+}
+
+string Room::getLegend() {
+	return legend;
 }
 
 void Room::setStatusDoor(string dir, bool status) {
@@ -55,13 +61,11 @@ string Room::getLabel() {
 	return label;
 }
 
-string Room::waitForAction(bool info) {
-	if (info)
-		cout << endl << "0: Prectes info" << endl;
+string Room::waitForAction() {
 
 	int n = -1;
 	while (true) {
-		n = g->readInput();
+		n = readInput->read();
 
 		if (n == 0) {
 			return description + "\n";

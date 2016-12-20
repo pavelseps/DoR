@@ -10,14 +10,15 @@ class RoomFight : public Room
 {
 private:
     Monster* monster;
+	string legend = "";
     
 public:
     RoomFight();
     ~RoomFight();
 
-	string waitForAction(bool info = true);
-    
+	string waitForAction();
 	void addMonster(Monster* monster);
+	string getLegend();
 };
 
 #endif // ROOMFIGHT_H

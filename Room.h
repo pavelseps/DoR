@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Monster.h"
-#include "Game.h"
+#include "ReadInput.h"
 #include "Item.h"
 using namespace std;
 
@@ -18,17 +18,20 @@ private:
         false,
         false
     };
+	string legend = "";
     
 public:
     Room();
     ~Room();
     
-    Game* g = new Game();
+    ReadInput* readInput = new ReadInput();
     
     virtual void addMonster(Monster* monster){};
     virtual void addItem(Item* item){};
     
 	void setDescription(string description);
+
+	virtual string getLegend();
     
 	string getDescription();
     
@@ -40,7 +43,7 @@ public:
     
 	string getLabel();
     
-	virtual string waitForAction(bool info = true);
+	virtual string waitForAction();
 };
 
 #endif // ROOM_H

@@ -2,19 +2,17 @@
 
 RoomLoot::RoomLoot()
 {
+	legend = "\n\t0: Prohledej mistnost\n";
 }
 
 RoomLoot::~RoomLoot()
 {
 }
 
-string RoomLoot::waitForAction(bool info) {
-	if (info)
-		cout << endl << "0: Prohledej mistnost" << endl;
-
+string RoomLoot::waitForAction() {
 	int n = -1;
 	while (true) {
-		n = g->readInput();
+		n = readInput->read();
 		int vectorSize = items.size();
 		if (n == 0) {
 			if (vectorSize != 0) {
@@ -49,4 +47,8 @@ string RoomLoot::waitForAction(bool info) {
 
 void RoomLoot::addItem(Item* item) {
 	items.push_back(item);
+}
+
+string RoomLoot::getLegend() {
+	return legend;
 }

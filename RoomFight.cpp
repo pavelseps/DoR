@@ -2,19 +2,17 @@
 
 RoomFight::RoomFight()
 {
+	legend = "\n\t0: Zautoc\n";
 }
 
 RoomFight::~RoomFight()
 {
 }
 
-string RoomFight::waitForAction(bool info) {
-	if (info)
-		cout << endl << "0: Zautoc" << endl;
-
+string RoomFight::waitForAction() {
 	int n = -1;
 	while (true) {
-		n = g->readInput();
+		n = readInput->read();
 
 		if (n == 0) {
 			if (monster != NULL) {
@@ -43,4 +41,8 @@ string RoomFight::waitForAction(bool info) {
 
 void RoomFight::addMonster(Monster* monster) {
 	this->monster = monster;
+}
+
+string RoomFight::getLegend() {
+	return legend;
 }

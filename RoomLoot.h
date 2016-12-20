@@ -13,13 +13,15 @@ class RoomLoot : public Room
 private:
     vector<Item*> items;
     string itemsNameS = "";
+	string legend = "";
+
 public:
     RoomLoot();
     ~RoomLoot();
 
-	string waitForAction(bool info = true);
-    
+	string waitForAction();
 	void addItem(Item* item);
+	string getLegend();
 };
 
 #endif // ROOMLOOT_H

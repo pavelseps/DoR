@@ -37,9 +37,9 @@ int main(int argc, char **argv)
     cout << "*                                                         **                           *" << endl;
     cout << "*=========================================================**===========================*" << endl;*/
    
-    Map* m = new Map();
+    Game* g = new Game();
     
-    m->initMap();
+    g->startGame();
     
 	return 0;
 }

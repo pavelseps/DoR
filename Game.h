@@ -1,4 +1,5 @@
 #include <conio.h>
+#include "Map.h"
 
 using namespace std;
 
@@ -8,12 +9,13 @@ using namespace std;
 class Game
 {
 private:
+	Map *map;
     
 public:
     Game();
     ~Game();
     
-	int readInput();
+	void startGame();
 };
 
 #endif // GAME_H
