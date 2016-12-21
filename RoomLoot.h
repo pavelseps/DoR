@@ -2,6 +2,7 @@
 #include <vector>
 #include "Room.h"
 #include "Item.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -14,14 +15,21 @@ private:
     vector<Item*> items;
     string itemsNameS = "";
 	string legend = "";
+	string description = "";
 
 public:
     RoomLoot();
     ~RoomLoot();
+	string initText = "";
 
-	string waitForAction();
+	string waitForAction(Player* player);
 	void addItem(Item* item);
 	string getLegend();
+
+	void setInitText(string text);
+	string getInitText();
+
+	void setDescription(string description);
 };
 
 #endif // ROOMLOOT_H

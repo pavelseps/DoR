@@ -1,5 +1,5 @@
-#include <conio.h>
 #include "Map.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -10,6 +10,7 @@ class Game
 {
 private:
 	Map *map;
+	Player* player = new Player();
     
 public:
     Game();

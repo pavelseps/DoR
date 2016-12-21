@@ -8,14 +8,18 @@ Map::Map()
 		}
 	}
 
-	Item* i1 = new Item();
-	Item* i2 = new Item();
+	Item* i1 = new ItemHealth();
+	Item* i2 = new ItemWeapon();
 	i1->setName("Lecivy lektvar");
+	i1->setHealthChange(4);
 	i2->setName("Mec");
+	i2->setDmg(4, 6);
+
 	Monster* m1 = new Monster();
 	Monster* m2 = new Monster();
 	m1->setMonsterName("Krecopazout");
 	m2->setMonsterName("Alfons");
+
 
 	map[0][0] = new Room();
 	map[0][1] = new RoomLoot();
@@ -31,20 +35,33 @@ Map::Map()
 	map[0][0]->setLabel("STA");
 	map[0][0]->setDescription("Jsi na startu");
 	map[0][0]->setStatusDoor("right", true);
+	map[0][0]->setInitText("0 0");
+
 	map[0][1]->setStatusDoor("left", true);
 	map[0][1]->setStatusDoor("bottom", true);
+	map[0][1]->setDescription("Kuchyne");
 	map[0][1]->addItem(i1);
 	map[0][1]->addItem(i2);
+	map[0][1]->setInitText("0 1");
+
 	map[1][1]->setStatusDoor("top", true);
 	map[1][1]->setStatusDoor("bottom", true);
 	map[1][1]->setStatusDoor("right", true);
+	map[1][1]->setDescription("chodba");
 	map[1][1]->addMonster(m1);
+	map[1][1]->setInitText("1 1");
+
 	map[1][2]->setStatusDoor("left", true);
+	map[1][2]->setInitText("1 2");
+
 	map[2][1]->setStatusDoor("top", true);
 	map[2][1]->setStatusDoor("right", true);
 	map[2][1]->addMonster(m2);
+	map[2][1]->setInitText("2 1");
+
 	map[2][2]->setDescription("Konec hry");
 	map[2][2]->setStatusDoor("left", true);
+	map[2][2]->setInitText("2 2");
 	map[2][2]->setLabel("END");
 }
 
@@ -57,7 +74,7 @@ void Map::setActualPlaPos(int x, int y) {
 	plaActualPos[1] = y;
 }
 
-void Map::moveActualPlaPos(string dir) {
+Room* Map::moveActualPlaPos(string dir) {
 	if (dir == "top") {
 		setActualPlaPos(plaActualPos[0] - 1, plaActualPos[1]);
 	}
@@ -70,6 +87,7 @@ void Map::moveActualPlaPos(string dir) {
 	else if (dir == "left") {
 		setActualPlaPos(plaActualPos[0], plaActualPos[1] - 1);
 	}
+	return getActualRoom();
 }
 
 Room* Map::getActualRoom() {

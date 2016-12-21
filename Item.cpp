@@ -16,3 +16,7 @@ string Item::getName() {
 void Item::setName(string name) {
 	itemName = name;
 }
+
+void Item::useItem() {}
+void Item::setDmg(int from, int to) {}
+void Item::setHealthChange(int change) {}

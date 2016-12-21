@@ -38,7 +38,6 @@ int main(int argc, char **argv)
     cout << "*=========================================================**===========================*" << endl;*/
    
     Game* g = new Game();
-    
     g->startGame();
     
 	return 0;

@@ -2,28 +2,35 @@
 
 RoomLoot::RoomLoot()
 {
-	legend = "\n\t0: Prohledej mistnost\n";
+	legend = "\n\t0: Info\n\t1: Prohledej mistnost\n";
 }
 
 RoomLoot::~RoomLoot()
 {
 }
 
-string RoomLoot::waitForAction() {
+string RoomLoot::waitForAction(Player* player) {
 	int n = -1;
 	while (true) {
 		n = readInput->read();
 		int vectorSize = items.size();
+
 		if (n == 0) {
+			return description + "\n";
+		}
+		else if (n == 1) {
 			if (vectorSize != 0) {
 				itemsNameS.append(items[0]->getName());
+				player->addItemToInventory(items[0]);
+
 				for (int i = 1; i<vectorSize; i++) {
 					itemsNameS.append(", ").append(items[i]->getName());
+					player->addItemToInventory(items[i]);
 				}
+
 				itemsNameS.append(".\n");
 				items.clear();
 				return itemsNameS;
-				return "Neco tu je";
 			}
 			else {
 				return "Nic jsi nenasel..\n";
@@ -51,4 +58,16 @@ void RoomLoot::addItem(Item* item) {
 
 string RoomLoot::getLegend() {
 	return legend;
+}
+
+void RoomLoot::setInitText(string text) {
+	this->initText = text;
+}
+
+string RoomLoot::getInitText() {
+	return initText;
+}
+
+void RoomLoot::setDescription(string description) {
+	this->description = description;
 }

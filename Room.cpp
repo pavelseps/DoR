@@ -2,8 +2,7 @@
 
 Room::Room()
 {
-
-	legend = "\n\t0: Prectes info\n";
+	legend = "\n\t0: Info\n\n";
 }
 
 Room::~Room()
@@ -12,10 +11,6 @@ Room::~Room()
 
 void Room::setDescription(string description) {
 	this->description = description;
-}
-
-string Room::getDescription() {
-	return this->description;
 }
 
 string Room::getLegend() {
@@ -61,12 +56,11 @@ string Room::getLabel() {
 	return label;
 }
 
-string Room::waitForAction() {
+string Room::waitForAction(Player* player) {
 
 	int n = -1;
 	while (true) {
 		n = readInput->read();
-
 		if (n == 0) {
 			return description + "\n";
 		}
@@ -83,4 +77,12 @@ string Room::waitForAction() {
 			return "bottom";
 		}
 	}
+}
+
+void Room::setInitText(string text) {
+	this->initText = text;
+}
+
+string Room::getInitText() {
+	return initText;
 }

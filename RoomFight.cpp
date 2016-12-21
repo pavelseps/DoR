@@ -2,19 +2,22 @@
 
 RoomFight::RoomFight()
 {
-	legend = "\n\t0: Zautoc\n";
+	legend = "\n\t0: Info\n\t1: Zautoc\n";
 }
 
 RoomFight::~RoomFight()
 {
 }
 
-string RoomFight::waitForAction() {
+string RoomFight::waitForAction(Player* player) {
 	int n = -1;
 	while (true) {
 		n = readInput->read();
 
 		if (n == 0) {
+			return description + "\n";
+		}
+		else if (n == 1) {
 			if (monster != NULL) {
 				string monsterName = monster->getMonsterName();
 				monster = NULL;
@@ -25,16 +28,36 @@ string RoomFight::waitForAction() {
 			}
 		}
 		else if (n == 8) {
-			return "top";
+			if (monster == NULL) {
+				return "top";
+			}
+			else {
+				return errorAtFirstKillMonstrum;
+			}
 		}
 		else if (n == 4) {
-			return "left";
+			if (monster == NULL) {
+				return "left";
+			}
+			else {
+				return errorAtFirstKillMonstrum;
+			}
 		}
 		else if (n == 6) {
-			return "right";
+			if (monster == NULL) {
+				return "right";
+			}
+			else {
+				return errorAtFirstKillMonstrum;
+			}
 		}
 		else if (n == 5) {
-			return "bottom";
+			if (monster == NULL) {
+				return "bottom";
+			}
+			else {
+				return errorAtFirstKillMonstrum;
+			}
 		}
 	}
 }
@@ -45,4 +68,16 @@ void RoomFight::addMonster(Monster* monster) {
 
 string RoomFight::getLegend() {
 	return legend;
+}
+
+void RoomFight::setInitText(string text) {
+	this->initText = text;
+}
+
+string RoomFight::getInitText() {
+	return initText;
+}
+
+void RoomFight::setDescription(string description) {
+	this->description = description;
 }

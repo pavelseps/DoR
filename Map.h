@@ -1,10 +1,13 @@
 #include <iostream>
 #include <string>
 #include "Item.h"
+#include "ItemHealth.h"
+#include "ItemWeapon.h"
 #include "Monster.h"
 #include "Room.h"
 #include "RoomLoot.h"
 #include "RoomFight.h"
+#include "Player.h"
 using namespace std;
 
 #ifndef MAP_H
@@ -29,7 +32,7 @@ public:
 	void printMap();
 	Room* getActualRoom();
 	Room* getRoom(int x, int y);
-	void moveActualPlaPos(string dir);
+	Room* moveActualPlaPos(string dir);
 };
 
 #endif // MAP_H
