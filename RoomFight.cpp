@@ -18,9 +18,10 @@ string RoomFight::waitForAction(Player* player) {
 			return description + "\n";
 		}
 		else if (n == 1) {
-			if (monster != NULL) {
+			if (monster != nullptr) {
 				string monsterName = monster->getMonsterName();
-				monster = NULL;
+				delete monster;
+				monster = nullptr;
 				return "Pozazil jsi monstrum " + monsterName + ". Gratuluji!\n";
 			}
 			else {
