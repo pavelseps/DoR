@@ -2,7 +2,7 @@
 
 Room::Room()
 {
-	legend = "\n\t0: Info\n\n";
+	legend = "\n\t0: Info\n\t1: Pouzij lektvar\n\t2: Zmen zbran\n\n";
 }
 
 Room::~Room()
@@ -63,6 +63,14 @@ string Room::waitForAction(Player* player) {
 		n = readInput->read();
 		if (n == 0) {
 			return description + "\n";
+		}
+		else if (n == 1) {
+			player->useHealthPotion();
+			return "Pouzil jsi lektvar\n";
+		}
+		else if (n == 2) {
+			player->changeWeapon();
+			return "Zmenil jsi zbran\n";
 		}
 		else if (n == 8) {
 			return "top";

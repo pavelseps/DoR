@@ -14,6 +14,6 @@ void ItemHealth::setHealthChange(int change) {
 	healthChange = change;
 }
 
-void ItemHealth::useItem() {
-
+int ItemHealth::getHealthChange() {
+	return healthChange;
 }

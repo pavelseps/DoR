@@ -11,6 +11,6 @@ public:
 	~ItemHealth();
 
 	void setHealthChange(int change);
-	void useItem();
+	int getHealthChange();
 };
 

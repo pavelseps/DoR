@@ -21,8 +21,8 @@ void Game::startGame() {
 		//Print player health
 		cout << "\tZivoty: " << player->getHealth() << endl;
 		//Print player damage
-		int* playerDmg = player->getDamage();
-		cout << "\tUtok: " << playerDmg[0] << "-" << playerDmg[1] << endl;
+		int* playerDmg = player->getWeaponDamage();
+		cout << "\tUtok: " << player->getWeapon()->getName() << " (" << playerDmg[0] << "-" << playerDmg[1] << ")" << endl;
 		//Print player inventory
 		cout << "\tInventar: " << player->getInvetoryList() << endl << endl;
 

@@ -2,7 +2,7 @@
 
 RoomLoot::RoomLoot()
 {
-	legend = "\n\t0: Info\n\t1: Prohledej mistnost\n";
+	legend = "\n\t0: Info\n\t1: Prohledej mistnost\n\t2: Pouzij lektvar\n\t3: Zmen zbran\n";
 }
 
 RoomLoot::~RoomLoot()
@@ -36,6 +36,14 @@ string RoomLoot::waitForAction(Player* player) {
 				return "Nic jsi nenasel..\n";
 			}
 
+		}
+		else if (n == 2) {
+			player->useHealthPotion();
+			return "Pouzil jsi lektvar\n";
+		}
+		else if (n == 3) {
+			player->changeWeapon();
+			return "Zmenil jsi zbran\n";
 		}
 		else if (n == 8) {
 			return "top";

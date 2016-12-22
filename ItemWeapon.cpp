@@ -15,6 +15,12 @@ void ItemWeapon::setDmg(int from, int to) {
 	dmg[1] = to;
 }
 
-void ItemWeapon::useItem() {
-
+int* ItemWeapon::getDmg() {
+	return dmg;
 }
+
+int ItemWeapon::getHealthChange()
+{
+	return NULL;
+}
+

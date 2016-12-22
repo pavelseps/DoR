@@ -2,7 +2,7 @@
 
 RoomFight::RoomFight()
 {
-	legend = "\n\t0: Info\n\t1: Zautoc\n";
+	legend = "\n\t0: Info\n\t1: Zautoc\n\t2: Pouzij lektvar\n\t3: Zmen zbran\n";
 }
 
 RoomFight::~RoomFight()
@@ -26,6 +26,14 @@ string RoomFight::waitForAction(Player* player) {
 			else {
 				return "Uz jsi monstrum porazil.\n";
 			}
+		}
+		else if (n == 2) {
+			player->useHealthPotion();
+			return "Pouzil jsi lektvar\n";
+		}
+		else if (n == 3) {
+			player->changeWeapon();
+			return "Zmenil jsi zbran\n";
 		}
 		else if (n == 8) {
 			if (monster == NULL) {

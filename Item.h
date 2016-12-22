@@ -10,6 +10,7 @@ private:
     string itemName;
 	int healthChange = 0;
 	int dmg[2] = { 0, 0 };
+	
 public:
     Item();
     ~Item();
@@ -17,9 +18,10 @@ public:
 	void setName(string name);
     
 	string getName();
-	virtual void useItem();
 	virtual void setDmg(int from, int to);
+	virtual int* getDmg();
 	virtual void setHealthChange(int change);
+	virtual int getHealthChange();
 };
 
 #endif // ITEM_H

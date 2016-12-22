@@ -11,6 +11,7 @@ public:
 	~ItemWeapon();
 
 	void setDmg(int from, int to);
-	void useItem();
+	int* getDmg();
+	int getHealthChange();
 };
 

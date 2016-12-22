@@ -1,4 +1,5 @@
 #include "Item.h"
+#include "ItemWeapon.h"
 #include <vector>
 using namespace std;
 
@@ -7,7 +8,7 @@ class Player
 {
 private:
 	int health = 0;
-	int dmg[2] = { 1, 3 };
+	Item* weapon;
 	vector<Item*> inventory;
 public:
 	Player();
@@ -15,9 +16,12 @@ public:
 
 	void setHealth(int health);
 	int getHealth();
-	void setDamage(int from, int to);
-	int* getDamage();
+	void setWeapon(Item* weapon);
+	int* getWeaponDamage();
 	void addItemToInventory(Item* item);
 	string getInvetoryList();
+	Item* getWeapon();
+	void changeWeapon();
+	void useHealthPotion();
 };
 

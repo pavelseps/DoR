@@ -3,6 +3,10 @@
 
 Player::Player()
 {
+	Item* startWeapon = new ItemWeapon();
+	startWeapon->setName("Klacek");
+	startWeapon->setDmg(1, 2);
+	weapon = startWeapon;
 }
 
 
@@ -18,12 +22,11 @@ int Player::getHealth() {
 	return health;
 }
 
-void Player::setDamage(int from, int to) {
-	dmg[0] = from;
-	dmg[1] = to;
+void Player::setWeapon(Item* weapon) {
+	this->weapon = weapon;
 }
-int* Player::getDamage() {
-	return dmg;
+int* Player::getWeaponDamage() {
+	return weapon->getDmg();
 }
 void Player::addItemToInventory(Item* item) {
 	inventory.push_back(item);
@@ -41,5 +44,31 @@ string Player::getInvetoryList() {
 	}
 	else {
 		return "Prazdny inventar";
+	}
+}
+
+Item* Player::getWeapon() {
+	return weapon;
+}
+
+void Player::changeWeapon() {
+	for (int i = 0; i<inventory.size(); i++) {
+		if (inventory[i]->getDmg() != NULL) {
+			inventory.push_back(weapon);
+			weapon = inventory[i];
+			inventory.erase(inventory.begin() + i);
+			break;
+		}
+	}
+}
+
+void Player::useHealthPotion() {
+	for (int i = 0; i<inventory.size(); i++) {
+		if (inventory[i]->getHealthChange() != NULL) {
+			health = health + inventory[i]->getHealthChange();
+			delete inventory[i];
+			inventory.erase(inventory.begin() + i);
+			break;
+		}
 	}
 }
