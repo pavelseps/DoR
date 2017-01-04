@@ -4,6 +4,7 @@
 #include "Room.h"
 #include "Map.h"
 #include "Game.h"
+#include "File.h"
 
 using namespace std;
 
@@ -18,6 +19,8 @@ int main(int argc, char **argv)
    
     Game* g = new Game();
     g->startGame();
-    
+
+
+	system("PAUSE");
 	return 0;
 }

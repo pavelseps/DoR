@@ -1,3 +1,4 @@
+#include <windows.h>
 #include "Map.h"
 #include "Player.h"
 
@@ -18,5 +19,8 @@ public:
     
 	void startGame();
 };
+
+
+void ClearScreen();
 
 #endif // GAME_H

@@ -2,7 +2,12 @@
 
 Map::Map()
 {
-	for (int x = 0; x<sizeX; x++) {
+	File* file = new File();
+	map = file->getMap();
+	int* actualPosFile = file->getStartPos();
+	setActualPlaPos(actualPosFile[0], actualPosFile[1]);
+
+	/*for (int x = 0; x<sizeX; x++) {
 		for (int y = 0; y<sizeY; y++) {
 			map[x][y] = NULL;
 		}
@@ -15,10 +20,18 @@ Map::Map()
 	i2->setName("Mec");
 	i2->setDmg(4, 6);
 
-	Monster* m1 = new Monster();
-	Monster* m2 = new Monster();
+	Monster* m1 = new Monster(8);
+	Monster* m2 = new Monster(8);
 	m1->setMonsterName("Krecopazout");
 	m2->setMonsterName("Alfons");
+	ItemWeapon* i3 = new ItemWeapon();
+	i3->setName("Palice");
+	i3->setDmg(6, 12);
+	m1->setWeapon(i3);
+	ItemWeapon* i4 = new ItemWeapon();
+	i4->setName("Nuz");
+	i4->setDmg(3, 5);
+	m2->setWeapon(i4);
 
 
 	map[0][0] = new Room();
@@ -62,7 +75,7 @@ Map::Map()
 	map[2][2]->setDescription("Konec hry");
 	map[2][2]->setStatusDoor("left", true);
 	map[2][2]->setInitText("2 2");
-	map[2][2]->setLabel("END");
+	map[2][2]->setLabel("END");*/
 }
 
 Map::~Map()
@@ -117,7 +130,7 @@ void Map::printMap() {
 	for (int x = 0; x<sizeX; x++) {
 		for (int y = 0; y<sizeY; y++) {
 
-			if (map[x][y] != NULL) {
+			if (map[x][y] != nullptr) {
 				if (x != 0 && map[x][y]->getStatusDoor("top")) {
 					top = "| |";
 				}

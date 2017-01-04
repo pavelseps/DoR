@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <windows.h>
 #include "Room.h"
 #include "Monster.h"
 #include "Player.h"
@@ -28,6 +30,7 @@ public:
 	string getInitText();
 
 	void setDescription(string description);
+	int getActualDmg(int from, int to);
 };
 
 #endif // ROOMFIGHT_H

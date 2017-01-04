@@ -1,13 +1,7 @@
 #include <iostream>
 #include <string>
-#include "Item.h"
-#include "ItemHealth.h"
-#include "ItemWeapon.h"
-#include "Monster.h"
-#include "Room.h"
-#include "RoomLoot.h"
-#include "RoomFight.h"
 #include "Player.h"
+#include "File.h"
 using namespace std;
 
 #ifndef MAP_H
@@ -20,7 +14,7 @@ private:
     static const int sizeY = 3;
     int plaActualPos[2] = {0,0};
 
-    Room* map [sizeX][sizeY];
+    Room*** map;
     
 	void setActualPlaPos(int x, int y);
     
