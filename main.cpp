@@ -18,9 +18,15 @@ int main(int argc, char **argv)
 {
    
     Game* g = new Game();
-    g->startGame();
+
+	start:
+    g->startMenu();
+
+	if (g->endGame(g->startGame())) {
+		goto start;
+	}
 
 
-	system("PAUSE");
+
 	return 0;
 }

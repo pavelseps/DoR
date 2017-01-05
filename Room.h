@@ -30,6 +30,8 @@ public:
     
     virtual void addMonster(Monster* monster){};
     virtual void addItem(Item* item){};
+
+	virtual bool isMonsterDead() { return true; };
     
 	virtual void setDescription(string description);
 

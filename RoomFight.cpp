@@ -18,7 +18,7 @@ string RoomFight::waitForAction(Player* player) {
 			return description + "\n";
 		}
 		else if (n == 1) {
-			if (monster != nullptr) {
+			if (!isMonsterDead()) {
 				int monsterHealth = monster->getMonsterHealth();
 				int* monsterDmg = monster->getDmg();
 				int playerHealth = player->getHealth();
@@ -140,4 +140,8 @@ void RoomFight::setDescription(string description) {
 
 int RoomFight::getActualDmg(int from, int to) {
 	return rand() % (to - from + 1) + from;
+}
+
+bool RoomFight::isMonsterDead() {
+	return monster == nullptr;
 }

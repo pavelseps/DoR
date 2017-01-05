@@ -135,3 +135,13 @@ Item* File::findItem(int id) {
 		}
 	}
 }
+
+int File::getMapSizeX() {
+	vector<string> mapsize = splitString(str.substr(str.find("MAPSIZE"), str.find('\n')));
+	return stoi(mapsize.at(1));
+}
+
+int File::getMapSizeY() {
+	vector<string> mapsize = splitString(str.substr(str.find("MAPSIZE"), str.find('\n')));
+	return stoi(mapsize.at(2));
+}

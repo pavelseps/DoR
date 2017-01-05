@@ -31,6 +31,8 @@ public:
 
 	void setDescription(string description);
 	int getActualDmg(int from, int to);
+
+	bool isMonsterDead();
 };
 
 #endif // ROOMFIGHT_H

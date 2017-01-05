@@ -42,15 +42,28 @@ static void ClearScreen()
 	SetConsoleCursorPosition(hStdOut, homeCoords);
 }
 
-void Game::startGame() {
+bool Game::startGame() {
 	map = new Map();
+	player = new Player();
 	player->setHealth(20);
+
 	string response = "";
-	bool finish = false;
 	bool hasResponse = false;
 
-	while (!finish) {
+	while (true) {
 		ClearScreen();
+
+		//if player died
+		if (player->getHealth() < 1) {
+			delete map;
+			return false;
+		}
+
+		//If player won
+		if (map->getActualRoom()->getLabel() == "END" && map->getActualRoom()->isMonsterDead()) {
+			delete map;
+			return true;
+		}
 
 		//Print player health
 		cout << "\tZivoty: " << player->getHealth() << endl;
@@ -83,6 +96,129 @@ void Game::startGame() {
 			response = map->moveActualPlaPos(response)->getInitText();
 			response.append("\n");
 			hasResponse = true;
+		}
+	}
+}
+
+void Game::startMenu() {
+
+	int n = -1;
+	while (true) {
+		ClearScreen();
+		cout << endl
+			<< "\t ======================================================================= " << endl
+			<< "\t*                                                                       *" << endl
+			<< "\t*    ____                                 ___    _____       _ _        *" << endl
+			<< "\t*   |    \\ _ _ ___ ___ ___ ___ ___    ___|  _|  | __  |_ _ _| |_|_ _    *" << endl
+			<< "\t*   |  |  | | |   | . | -_| . |   |  | . |  _|  |    -| | | . | |_'_|   *" << endl
+			<< "\t*   |____/|___|_|_|_  |___|___|_|_|  |___|_|    |__|__|___|___|_|_,_|   *" << endl
+			<< "\t*                 |___|                                                 *" << endl
+			<< "\t*                                                                       *" << endl
+			<< "\t*_______________________________________________________________________*" << endl
+			<< "\t*                                                                       *" << endl
+			<< "\t*                                                                       *" << endl
+			<< "\t*   0: Zacit hru                                                        *" << endl
+			<< "\t*   1: Jak se hra hraje                                                 *" << endl
+			<< "\t*   2: O autorovi                                                       *" << endl
+			<< "\t*                                                                       *" << endl
+			<< "\t*                                                                       *" << endl
+			<< "\t*=======================================================================*" << endl;
+
+		n = readInput->read();
+
+		if (n == 0) {
+			break;
+		}
+		else if (n == 1) {
+			while (n != 3) {
+				ClearScreen();
+				cout << endl
+					<< "\t ======================================================================= " << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*    ____                                 ___    _____       _ _        *" << endl
+					<< "\t*   |    \\ _ _ ___ ___ ___ ___ ___    ___|  _|  | __  |_ _ _| |_|_ _    *" << endl
+					<< "\t*   |  |  | | |   | . | -_| . |   |  | . |  _|  |    -| | | . | |_'_|   *" << endl
+					<< "\t*   |____/|___|_|_|_  |___|___|_|_|  |___|_|    |__|__|___|___|_|_,_|   *" << endl
+					<< "\t*                 |___|                                                 *" << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*_______________________________________________________________________*" << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*   Hra se proste hraje                                                 *" << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*   3: zpet                                                             *" << endl
+					<< "\t*=======================================================================*" << endl;
+				n = readInput->read();
+			}
+
+		}
+		else if (n == 2) {
+			while (n != 3) {
+				ClearScreen();
+				cout << endl
+					<< "\t ======================================================================= " << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*    ____                                 ___    _____       _ _        *" << endl
+					<< "\t*   |    \\ _ _ ___ ___ ___ ___ ___    ___|  _|  | __  |_ _ _| |_|_ _    *" << endl
+					<< "\t*   |  |  | | |   | . | -_| . |   |  | . |  _|  |    -| | | . | |_'_|   *" << endl
+					<< "\t*   |____/|___|_|_|_  |___|___|_|_|  |___|_|    |__|__|___|___|_|_,_|   *" << endl
+					<< "\t*                 |___|                                                 *" << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*_______________________________________________________________________*" << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*   Autor je naprosto super                                             *" << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*                                                                       *" << endl
+					<< "\t*   3: zpet                                                             *" << endl
+					<< "\t*=======================================================================*" << endl;
+				n = readInput->read();
+			}
+		}
+	}
+}
+
+bool Game::endGame(bool victory) {
+	string response = "";
+	if (victory) {
+		response = "Gratuluji! Vyhral jsi a porazil jsi Rudixe";
+	}
+	else {
+		response = "Dungeon te porazil                        ";
+	}
+
+	int n = -1;
+	while (true) {
+		ClearScreen();
+		cout << endl
+			<< "\t ======================================================================= " << endl
+			<< "\t*                                                                       *" << endl
+			<< "\t*    ____                                 ___    _____       _ _        *" << endl
+			<< "\t*   |    \\ _ _ ___ ___ ___ ___ ___    ___|  _|  | __  |_ _ _| |_|_ _    *" << endl
+			<< "\t*   |  |  | | |   | . | -_| . |   |  | . |  _|  |    -| | | . | |_'_|   *" << endl
+			<< "\t*   |____/|___|_|_|_  |___|___|_|_|  |___|_|    |__|__|___|___|_|_,_|   *" << endl
+			<< "\t*                 |___|                                                 *" << endl
+			<< "\t*                                                                       *" << endl
+			<< "\t*_______________________________________________________________________*" << endl
+			<< "\t*                                                                       *" << endl
+			<< "\t*   " << response << "                          *" << endl
+			<< "\t*   Prejes si zacit znovu?                                              *" << endl
+			<< "\t*                                                                       *" << endl
+			<< "\t*   0: Ano                                                              *" << endl
+			<< "\t*   1: Ne, hra se vypne                                                 *" << endl
+			<< "\t*                                                                       *" << endl
+			<< "\t*=======================================================================*" << endl;
+
+		n = readInput->read();
+
+		if (n == 0) {
+			return 1;
+		}
+		else if (n == 1) {
+			return 0;
 		}
 	}
 }

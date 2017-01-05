@@ -6,6 +6,8 @@ Map::Map()
 	map = file->getMap();
 	int* actualPosFile = file->getStartPos();
 	setActualPlaPos(actualPosFile[0], actualPosFile[1]);
+	sizeX = file->getMapSizeX();
+	sizeY = file->getMapSizeY();
 
 	/*for (int x = 0; x<sizeX; x++) {
 		for (int y = 0; y<sizeY; y++) {
@@ -80,6 +82,13 @@ Map::Map()
 
 Map::~Map()
 {
+	for (int x = 0; x<sizeX; x++) {
+		for (int y = 0; y<sizeY; y++) {
+			delete map[x][y];
+			map[x][y] = nullptr;
+		}
+	}
+	delete map;
 }
 
 void Map::setActualPlaPos(int x, int y) {

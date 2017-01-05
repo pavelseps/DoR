@@ -10,8 +10,8 @@ using namespace std;
 class Map
 {
 private:
-    static const int sizeX = 3;
-    static const int sizeY = 3;
+    int sizeX = 0;
+    int sizeY = 0;
     int plaActualPos[2] = {0,0};
 
     Room*** map;

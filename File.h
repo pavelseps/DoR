@@ -23,6 +23,8 @@ public:
 	~File();
 	Room*** getMap();
 	int* getStartPos();
+	int getMapSizeX();
+	int getMapSizeY();
 };
 
 vector<string> splitString(string str, string delimiter = ";");

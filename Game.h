@@ -11,13 +11,16 @@ class Game
 {
 private:
 	Map *map;
-	Player* player = new Player();
+	Player* player;
+	ReadInput* readInput = new ReadInput();
     
 public:
     Game();
     ~Game();
     
-	void startGame();
+	bool startGame();
+	void startMenu();
+	bool endGame(bool victory);
 };
 
 
