@@ -34,7 +34,7 @@ Room*** File::getMap() {
 	int roomY = 0;
 
 	for (int i = 0; i < roomsString.size(); i++) {
-		roomString = splitString(roomsString.at(i));
+		roomString = splitString(roomsString.at(i), ";");
 		roomX = stoi(roomString.at(1));
 		roomY = stoi(roomString.at(2));
 
@@ -45,6 +45,7 @@ Room*** File::getMap() {
 			monster->setMonsterName(roomString.at(10));
 			monster->setWeapon(findItem(stoi(roomString.at(12))));
 			room->addMonster(monster);
+			monster = nullptr;
 		}
 		else if (roomString.at(0) == "ROOMLOOT") {
 			room = new RoomLoot();

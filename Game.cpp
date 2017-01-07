@@ -49,6 +49,7 @@ bool Game::startGame() {
 
 	string response = "";
 	bool hasResponse = false;
+	bool startgame = true;
 
 	while (true) {
 		ClearScreen();
@@ -68,12 +69,12 @@ bool Game::startGame() {
 		//Print player health
 		cout << endl
 			<< "\t==== Hrac" << endl
-		<< "\t*   Zivoty: " << player->getHealth() << endl;
+		<< "\t*  Zivoty: " << player->getHealth() << endl;
 		//Print player damage
 		int* playerDmg = player->getWeaponDamage();
-		cout << "\t*   Utok: " << player->getWeapon()->getName() << " (" << playerDmg[0] << "-" << playerDmg[1] << ")" << endl;
+		cout << "\t*  Utok: " << player->getWeapon()->getName() << " (" << playerDmg[0] << "-" << playerDmg[1] << ")" << endl;
 		//Print player inventory
-		cout << "\t*   Inventar: " << player->getInvetoryList() << endl 
+		cout << "\t*  Inventar: " << player->getInvetoryList() << endl 
 			<< "\t====" << endl << endl;
 
 		//Print legend
@@ -81,12 +82,17 @@ bool Game::startGame() {
 			<< map->getActualRoom()->getLegend()
 			<< "\t====" << endl << endl;
 		//Print response
-		if (hasResponse) {
+		if (startgame) {
+			response = map->getActualRoom()->getInitText();
+			response.append("\n");
+		}
+		if (hasResponse || startgame) {
 			cout << "\t==== Informace" << endl
 				<< "\t*   " << endl
-				<< "\t*   " << response
+				<< "\t*  " << response
 				<< "\t*   " << endl
 				<< "\t====" << endl;
+			startgame = false;
 		}
 		else {
 			cout << "\t==== Informace" << endl
@@ -157,8 +163,13 @@ void Game::startMenu() {
 					<< "\t*_______________________________________________________________________*" << endl
 					<< "\t*                                                                       *" << endl
 					<< "\t*                                                                       *" << endl
-					<< "\t*   Hra se proste hraje                                                 *" << endl
+					<< "\t*   Cela hra se ovlada pomoci cisel.                                    *" << endl
+					<< "\t*   Cislicemi 8, 6, 5, 4 se ovlada smer pohybu                          *" << endl
+					<< "\t*   Cislice 0, 1, 2, 3 jsou ovladani akci, ktere jsou                   *" << endl
+					<< "\t*   vysvetlene v legende                                                *" << endl
 					<< "\t*                                                                       *" << endl
+					<< "\t*   Ukolem hry je se dostat do mistnosti s napisem END                  *" << endl
+					<< "\t*   Po ceste ziskavas predmety a zabijis monstra                        *" << endl
 					<< "\t*                                                                       *" << endl
 					<< "\t*                                                                       *" << endl
 					<< "\t*   3: zpet                                                             *" << endl
@@ -182,8 +193,10 @@ void Game::startMenu() {
 					<< "\t*_______________________________________________________________________*" << endl
 					<< "\t*                                                                       *" << endl
 					<< "\t*                                                                       *" << endl
-					<< "\t*   Autor je naprosto super                                             *" << endl
-					<< "\t*                                                                       *" << endl
+					<< "\t*   Autorem teto hry je Pavel Seps, kdy tuto hru vytvoril jako          *" << endl
+					<< "\t*   semestralni praci.                                                  *" << endl
+					<< "\t*   Cely projekt je k nahlednuti na githabu:                            *" << endl
+					<< "\t*   https://github.com/pavelseps/DoR                                    *" << endl
 					<< "\t*                                                                       *" << endl
 					<< "\t*                                                                       *" << endl
 					<< "\t*   3: zpet                                                             *" << endl
