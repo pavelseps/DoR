@@ -11,9 +11,16 @@ File::~File()
 
 Room*** File::getMap() {
 	//Read settings file
-	ifstream t("C:\\Users\\Pavel\\prace\\skola\\cpp\\cpp\\DoR\\settings\\map.txt");
+	ifstream t("settings.txt");
 	str.assign((istreambuf_iterator<char>(t)),
 		istreambuf_iterator<char>());
+	
+	if (str == "") {
+		system("CLS");
+		cout << "Settings file not found...." << endl;
+		system("PAUSE");
+		exit(1);
+	}
 	
 	//Generate map size
 	vector<string> mapsize = splitString(str.substr(str.find("MAPSIZE"), str.find('\n')));
