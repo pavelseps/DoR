@@ -23,9 +23,16 @@ public:
     Map();
     ~Map();
    
+	//Print map from array
 	void printMap();
+
+	//Get actual room where is player now
 	Room* getActualRoom();
+
+	//Get room on x,y position
 	Room* getRoom(int x, int y);
+
+	//Move with player to next room
 	Room* moveActualPlaPos(string dir);
 };
 

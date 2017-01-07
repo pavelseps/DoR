@@ -15,10 +15,17 @@ public:
     Monster(int health = 0);
     ~Monster();
     
+	//Set/Get monster name
 	void setMonsterName(string name);
 	string getMonsterName();
+
+	//Set weapon
 	void setWeapon(Item* weapon);
+
+	//Get monster health
 	int getMonsterHealth();
+
+	//Get monster damage
 	int* getDmg();
 };
 

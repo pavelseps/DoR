@@ -1,10 +1,5 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include "Room.h"
-#include "Map.h"
 #include "Game.h"
-#include "File.h"
+#include <windows.h>
 
 using namespace std;
 
@@ -16,17 +11,18 @@ using namespace std;
  */
 int main(int argc, char **argv)
 {
-   
+	system("mode 650");
+
+	HWND consoleWindow = GetConsoleWindow();
+
+	SetWindowPos(consoleWindow, 0, 0, 0, 0, 0, SWP_NOSIZE );
+
     Game* g = new Game();
 
 	start:
     g->startMenu();
-
-	if (g->endGame(g->startGame())) {
+	if (g->endGame(g->startGame()))
 		goto start;
-	}
-
-
 
 	return 0;
 }

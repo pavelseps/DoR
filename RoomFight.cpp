@@ -31,8 +31,8 @@ string RoomFight::waitForAction(Player* player) {
 					<< "\t ==================================== " << endl
 					<< "\t*                                    *" << endl
 					<< "\t*               BITVA                *" << endl
-					<< "\t*                                    *" << endl
-					<< "\t ==================================== " << endl << endl;
+					<< "\t*====================================*" << endl
+					<< endl;
 
 
 				while (monsterHealth > 0 && playerHealth > 0) {
@@ -42,32 +42,39 @@ string RoomFight::waitForAction(Player* player) {
 						actualDmg = getActualDmg(playerDmg[0], playerDmg[1]);
 						monsterHealth -= actualDmg;
 
-						cout << "\tUtocis za: " << actualDmg << endl
-							<< "\tMonstrum ma: " << monsterHealth << " zivotu" << endl << endl;
+						cout << "\t*   Utocis za: " << actualDmg << endl
+							<< "\t*   Monstrum ma: " << monsterHealth << " zivotu" << endl << endl;
 					}
 					else {
 						plaAttack = true;
 						actualDmg = getActualDmg(monsterDmg[0], monsterDmg[1]);
 						playerHealth -= actualDmg;
 
-						cout << "\tMonstrum utoci za: " << actualDmg << endl
-							<< "\tMas: " << playerHealth << " zivotu" << endl << endl;
+						cout << "\t*   Monstrum utoci za: " << actualDmg << endl
+							<< "\t*   Mas: " << playerHealth << " zivotu" << endl << endl;
 					}
 
-					Sleep(1700);
+					Sleep(1900);
 				}
 
-				Sleep(3500);
 
 				player->setHealth(playerHealth);
 
 				if (playerHealth < 1) {
+					cout << "\t ==================================== " << endl
+						<< "\t*   Monstrum te porazilo, zbylo mu " + to_string(monsterHealth) + " zivotu\n\n";
+
+					Sleep(3000);
 					return "Monstrum te porazilo, zbylo mu " + to_string(monsterHealth) + " zivotu\n";
 				}
 				else {
 					string monsterName = monster->getMonsterName();
 					delete monster;
 					monster = nullptr;
+					cout << "\t ==================================== " << endl
+						<< "\t*   Pozazil jsi monstrum " + monsterName + ". Gratuluji!\n\n";
+
+					Sleep(3000);
 					return "Pozazil jsi monstrum " + monsterName + ". Gratuluji!\n";
 				}
 			}

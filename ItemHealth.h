@@ -10,6 +10,7 @@ public:
 	ItemHealth();
 	~ItemHealth();
 
+	//Set/Get health change
 	void setHealthChange(int change);
 	int getHealthChange();
 };

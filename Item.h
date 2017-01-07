@@ -15,11 +15,15 @@ public:
     Item();
     ~Item();
 
+	//Set/Get item name
 	void setName(string name);
-    
 	string getName();
+
+	//Set/Get damage to weapon
 	virtual void setDmg(int from, int to);
 	virtual int* getDmg();
+
+	//Set/Get health change
 	virtual void setHealthChange(int change);
 	virtual int getHealthChange();
 };

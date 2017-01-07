@@ -66,21 +66,34 @@ bool Game::startGame() {
 		}
 
 		//Print player health
-		cout << "\tZivoty: " << player->getHealth() << endl;
+		cout << endl
+			<< "\t==== Hrac" << endl
+		<< "\t*   Zivoty: " << player->getHealth() << endl;
 		//Print player damage
 		int* playerDmg = player->getWeaponDamage();
-		cout << "\tUtok: " << player->getWeapon()->getName() << " (" << playerDmg[0] << "-" << playerDmg[1] << ")" << endl;
+		cout << "\t*   Utok: " << player->getWeapon()->getName() << " (" << playerDmg[0] << "-" << playerDmg[1] << ")" << endl;
 		//Print player inventory
-		cout << "\tInventar: " << player->getInvetoryList() << endl << endl;
+		cout << "\t*   Inventar: " << player->getInvetoryList() << endl 
+			<< "\t====" << endl << endl;
 
 		//Print legend
-		cout << map->getActualRoom()->getLegend() << endl;
+		cout << "\t==== Legenda"
+			<< map->getActualRoom()->getLegend()
+			<< "\t====" << endl << endl;
 		//Print response
 		if (hasResponse) {
-			cout << response;
+			cout << "\t==== Informace" << endl
+				<< "\t*   " << endl
+				<< "\t*   " << response
+				<< "\t*   " << endl
+				<< "\t====" << endl;
 		}
 		else {
-			cout << endl;
+			cout << "\t==== Informace" << endl
+				<< "\t*   " << endl
+				<< "\t*   " << endl
+				<< "\t*   " << endl
+				<< "\t====" << endl;
 		}
 		//Print map
 		map->printMap();

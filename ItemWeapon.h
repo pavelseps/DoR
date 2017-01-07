@@ -10,8 +10,8 @@ public:
 	ItemWeapon();
 	~ItemWeapon();
 
+	//Set/Get damage to weapon
 	void setDmg(int from, int to);
 	int* getDmg();
-	int getHealthChange();
 };
 

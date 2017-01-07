@@ -22,13 +22,20 @@ public:
     ~RoomLoot();
 	string initText = "";
 
+	//Wait for player action on keyboard
 	string waitForAction(Player* player);
+
+	//Add item to room for loot
 	void addItem(Item* item);
+
+	//Get legend
 	string getLegend();
 
+	//Set/Get Init text
 	void setInitText(string text);
 	string getInitText();
 
+	//Set description
 	void setDescription(string description);
 };
 

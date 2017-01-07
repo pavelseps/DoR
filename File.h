@@ -21,8 +21,14 @@ private:
 public:
 	File();
 	~File();
+
+	//Get map, items, monsters, rooms from file
 	Room*** getMap();
+
+	//Get start pos of player
 	int* getStartPos();
+
+	//Get map site x/y
 	int getMapSizeX();
 	int getMapSizeY();
 };

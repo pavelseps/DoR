@@ -19,8 +19,3 @@ int* ItemWeapon::getDmg() {
 	return dmg;
 }
 
-int ItemWeapon::getHealthChange()
-{
-	return NULL;
-}
-

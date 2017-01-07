@@ -20,6 +20,7 @@ string RoomLoot::waitForAction(Player* player) {
 		}
 		else if (n == 1) {
 			if (vectorSize != 0) {
+				itemsNameS = "Nasel jsi: ";
 				itemsNameS.append(items[0]->getName());
 				player->addItemToInventory(items[0]);
 

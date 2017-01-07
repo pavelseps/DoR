@@ -18,8 +18,13 @@ public:
     Game();
     ~Game();
     
+	//Start game
 	bool startGame();
+
+	//Menu on start
 	void startMenu();
+
+	//Return end menu
 	bool endGame(bool victory);
 };
 
