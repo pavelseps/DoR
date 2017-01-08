@@ -51,24 +51,26 @@ Item* Player::getWeapon() {
 	return weapon;
 }
 
-void Player::changeWeapon() {
+bool Player::changeWeapon() {
 	for (int i = 0; i<inventory.size(); i++) {
 		if (inventory[i]->getDmg() != NULL) {
 			inventory.push_back(weapon);
 			weapon = inventory[i];
 			inventory.erase(inventory.begin() + i);
-			break;
+			return true;
 		}
 	}
+	return false;
 }
 
-void Player::useHealthPotion() {
+bool Player::useHealthPotion() {
 	for (int i = 0; i<inventory.size(); i++) {
 		if (inventory[i]->getHealthChange() != NULL) {
 			health = health + inventory[i]->getHealthChange();
 			delete inventory[i];
 			inventory.erase(inventory.begin() + i);
-			break;
+			return true;
 		}
 	}
+	return false;
 }

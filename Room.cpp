@@ -65,12 +65,20 @@ string Room::waitForAction(Player* player) {
 			return description + "\n";
 		}
 		else if (n == 2) {
-			player->useHealthPotion();
-			return "Pouzil jsi lektvar\n";
+			if (player->useHealthPotion()) {
+				return "Pouzil jsi lektvar\n";
+			}
+			else {
+				return "Zadny lektvar nemas\n";
+			}
 		}
 		else if (n == 3) {
-			player->changeWeapon();
-			return "Zmenil jsi zbran\n";
+			if (player->changeWeapon()) {
+				return "Zmenil jsi zbran\n";
+			}
+			else {
+				return "Nemas vice zbrani\n";
+			}
 		}
 		else if (n == 8) {
 			return "top";

@@ -34,9 +34,9 @@ public:
 	Item* getWeapon();
 
 	//Change weapon from inventory
-	void changeWeapon();
+	bool changeWeapon();
 
 	//Use health potion from inventory
-	void useHealthPotion();
+	bool useHealthPotion();
 };
 

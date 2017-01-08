@@ -54,7 +54,7 @@ bool Game::startGame() {
 	while (true) {
 		ClearScreen();
 
-		//if player died
+		//If player died
 		if (player->getHealth() < 1) {
 			delete map;
 			return false;
@@ -69,7 +69,7 @@ bool Game::startGame() {
 		//Print player health
 		cout << endl
 			<< "\t==== Hrac" << endl
-		<< "\t*  Zivoty: " << player->getHealth() << endl;
+			<< "\t*  Zivoty: " << player->getHealth() << endl;
 		//Print player damage
 		int* playerDmg = player->getWeaponDamage();
 		cout << "\t*  Utok: " << player->getWeapon()->getName() << " (" << playerDmg[0] << "-" << playerDmg[1] << ")" << endl;
